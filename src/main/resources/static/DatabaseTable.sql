@@ -1,4 +1,4 @@
-CREATE TABLE energy_data (
+CREATE TABLE energy_tab (
     id INT AUTO_INCREMENT PRIMARY KEY,
     dtm DATETIME NOT NULL,
     MIP DECIMAL(10, 2),
