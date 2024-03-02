@@ -48,4 +48,16 @@ public class EnergyData {
     private BigDecimal DA_Price;
 
 
+    public EnergyData(LocalDateTime dtm, BigDecimal MIP, BigDecimal Solar_MW, BigDecimal Solar_capacity_mwp, BigDecimal Solar_installedcapacity_mwp, BigDecimal Wind_MW, BigDecimal SS_Price, BigDecimal boa_MWh, BigDecimal DA_Price) {
+        this.dtm = dtm;
+        this.MIP = MIP;
+        this.Solar_MW = Solar_MW;
+        this.Solar_capacity_mwp = Solar_capacity_mwp;
+        this.Solar_installedcapacity_mwp = Solar_installedcapacity_mwp;
+        this.Wind_MW = Wind_MW;
+        this.SS_Price = SS_Price;
+        this.boa_MWh = boa_MWh;
+        this.DA_Price = DA_Price;
+    }
+
 }
