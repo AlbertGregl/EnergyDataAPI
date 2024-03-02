@@ -17,7 +17,7 @@ public class EnergyDataController {
         this.energyDataService = energyDataService;
     }
 
-    @GetMapping("/allData")
+    @GetMapping("/index")
     public ResponseEntity<List<EnergyData>> getAllEnergyData() {
         List<EnergyData> data = energyDataService.getAllEnergyData();
         return ResponseEntity.ok(data);
@@ -38,12 +38,10 @@ public class EnergyDataController {
         return energyData;
     }
 
-
-    @PutMapping("/save/{id}")
+    @PutMapping("/update/{id}")
     @ResponseBody
     @ResponseStatus(HttpStatus.OK)
     public EnergyData updateEnergyData(@PathVariable Long id, @RequestBody EnergyData energyData) {
-        energyDataService.saveEnergyData(energyData);
         EnergyData existing = energyDataService.getEnergyDataById(id);
         existing.setDtm(energyData.getDtm());
         existing.setMIP(energyData.getMIP());
@@ -54,7 +52,8 @@ public class EnergyDataController {
         existing.setSS_Price(energyData.getSS_Price());
         existing.setBoa_MWh(energyData.getBoa_MWh());
         existing.setDA_Price(energyData.getDA_Price());
-        return energyData;
+        energyDataService.saveEnergyData(existing);
+        return existing;
     }
 
     @DeleteMapping("/delete/{id}")
