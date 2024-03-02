@@ -35,4 +35,5 @@ public class EnergyDataServiceImpl implements EnergyDataService{
     public void deleteEnergyData(Long id) {
         energyDataRepository.deleteById(id);
     }
+
 }

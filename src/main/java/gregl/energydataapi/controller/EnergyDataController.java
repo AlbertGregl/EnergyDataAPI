@@ -3,14 +3,14 @@ package gregl.energydataapi.controller;
 import gregl.energydataapi.model.EnergyData;
 import gregl.energydataapi.service.EnergyDataService;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/energydata")
+@RequestMapping(path = "api", produces = MediaType.APPLICATION_JSON_VALUE)
+@CrossOrigin(origins = "*")
 public class EnergyDataController {
     private final EnergyDataService energyDataService;
 
@@ -18,8 +18,21 @@ public class EnergyDataController {
         this.energyDataService = energyDataService;
     }
 
+    @GetMapping("/public")
+    @ResponseBody
+    @ResponseStatus(HttpStatus.OK)
+    public String getPublic() {
+        return "This is public API -> No Auth Required";
+    }
+
+    @GetMapping("/private")
+    @ResponseBody
+    @ResponseStatus(HttpStatus.OK)
+    public String getPrivate() {
+        return "This is private API -> Auth Required";
+    }
+
     @GetMapping("/index")
-    @PreAuthorize("hasAnyAuthority('SCOPE_read:data')")
     @ResponseBody
     @ResponseStatus(HttpStatus.OK)
     public List<EnergyData> getAllEnergyData() {
