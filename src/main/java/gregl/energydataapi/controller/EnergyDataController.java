@@ -1,7 +1,9 @@
 package gregl.energydataapi.controller;
 
 import gregl.energydataapi.model.EnergyData;
+import gregl.energydataapi.model.Message;
 import gregl.energydataapi.service.EnergyDataService;
+import gregl.energydataapi.xmlutil.EnergyDataListWrapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -9,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "api", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(path = "api", produces = MediaType.APPLICATION_XML_VALUE)
 @CrossOrigin(origins = "*")
 public class EnergyDataController {
     private final EnergyDataService energyDataService;
@@ -21,22 +23,25 @@ public class EnergyDataController {
     @GetMapping("/public")
     @ResponseBody
     @ResponseStatus(HttpStatus.OK)
-    public String getPublic() {
-        return "This is public API -> No Auth Required";
+    public Message getPublic() {
+        return new Message("This is public API; No Auth Required");
     }
 
     @GetMapping("/private")
     @ResponseBody
     @ResponseStatus(HttpStatus.OK)
-    public String getPrivate() {
-        return "This is private API -> Auth Required";
+    public Message getPrivate() {
+        return new Message("This is private API; Auth Required");
     }
 
     @GetMapping("/index")
     @ResponseBody
     @ResponseStatus(HttpStatus.OK)
-    public List<EnergyData> getAllEnergyData() {
-        return energyDataService.getAllEnergyData();
+    public EnergyDataListWrapper getAllEnergyData() {
+        List<EnergyData> list = energyDataService.getAllEnergyData();
+        EnergyDataListWrapper wrapper = new EnergyDataListWrapper();
+        wrapper.setEnergyDataList(list);
+        return wrapper;
     }
 
     @GetMapping("/{id}")

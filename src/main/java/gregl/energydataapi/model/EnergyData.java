@@ -1,11 +1,11 @@
 package gregl.energydataapi.model;
 
 import jakarta.persistence.*;
+import jakarta.xml.bind.annotation.XmlRootElement;
 import lombok.*;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.util.Date;
 
 @Entity
 @Table(name = "energy_tab")
@@ -14,6 +14,7 @@ import java.time.LocalDateTime;
 @ToString
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 @AllArgsConstructor(access = AccessLevel.PUBLIC)
+@XmlRootElement
 public class EnergyData {
 
     @Id
@@ -21,7 +22,7 @@ public class EnergyData {
     private Long id;
 
     @Column(name = "dtm", nullable = false)
-    private LocalDateTime dtm;
+    private Date dtm;
 
     @Column(name = "MIP")
     private BigDecimal MIP;
@@ -48,7 +49,7 @@ public class EnergyData {
     private BigDecimal DA_Price;
 
 
-    public EnergyData(LocalDateTime dtm, BigDecimal MIP, BigDecimal Solar_MW, BigDecimal Solar_capacity_mwp, BigDecimal Solar_installedcapacity_mwp, BigDecimal Wind_MW, BigDecimal SS_Price, BigDecimal boa_MWh, BigDecimal DA_Price) {
+    public EnergyData(Date dtm, BigDecimal MIP, BigDecimal Solar_MW, BigDecimal Solar_capacity_mwp, BigDecimal Solar_installedcapacity_mwp, BigDecimal Wind_MW, BigDecimal SS_Price, BigDecimal boa_MWh, BigDecimal DA_Price) {
         this.dtm = dtm;
         this.MIP = MIP;
         this.Solar_MW = Solar_MW;
