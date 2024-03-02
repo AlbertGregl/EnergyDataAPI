@@ -4,6 +4,7 @@ import gregl.energydataapi.model.EnergyData;
 import gregl.energydataapi.service.EnergyDataService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,9 +19,11 @@ public class EnergyDataController {
     }
 
     @GetMapping("/index")
-    public ResponseEntity<List<EnergyData>> getAllEnergyData() {
-        List<EnergyData> data = energyDataService.getAllEnergyData();
-        return ResponseEntity.ok(data);
+    @PreAuthorize("hasAnyAuthority('SCOPE_read:data')")
+    @ResponseBody
+    @ResponseStatus(HttpStatus.OK)
+    public List<EnergyData> getAllEnergyData() {
+        return energyDataService.getAllEnergyData();
     }
 
     @GetMapping("/{id}")
