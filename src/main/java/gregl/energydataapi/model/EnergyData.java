@@ -5,6 +5,7 @@ import jakarta.xml.bind.annotation.XmlRootElement;
 import lombok.*;
 
 import java.math.BigDecimal;
+import java.time.ZonedDateTime;
 import java.util.Date;
 
 @Entity

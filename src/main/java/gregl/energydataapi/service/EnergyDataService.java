@@ -9,4 +9,8 @@ public interface EnergyDataService {
     EnergyData getEnergyDataById(Long id);
     void saveEnergyData(EnergyData energyData);
     void deleteEnergyData(Long id);
+
+    void parseAndSaveEnergyData(String filePath);
+
+    List<EnergyData> getEnergyDataByYearAndMonth(int year, int month);
 }

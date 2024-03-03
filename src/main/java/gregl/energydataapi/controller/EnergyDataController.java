@@ -1,5 +1,6 @@
 package gregl.energydataapi.controller;
 
+import gregl.energydataapi.fileutil.FilePathConfig;
 import gregl.energydataapi.model.EnergyData;
 import gregl.energydataapi.model.Message;
 import gregl.energydataapi.service.EnergyDataService;
@@ -7,6 +8,7 @@ import gregl.energydataapi.xmlutil.EnergyDataListWrapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -18,30 +20,6 @@ public class EnergyDataController {
 
     public EnergyDataController(EnergyDataService energyDataService) {
         this.energyDataService = energyDataService;
-    }
-
-    @GetMapping("/public")
-    @ResponseBody
-    @ResponseStatus(HttpStatus.OK)
-    public Message getPublic() {
-        return new Message("This is public API; No Auth Required");
-    }
-
-    @GetMapping("/private")
-    @ResponseBody
-    @ResponseStatus(HttpStatus.OK)
-    public Message getPrivate() {
-        return new Message("This is private API; Auth Required");
-    }
-
-    @GetMapping("/index")
-    @ResponseBody
-    @ResponseStatus(HttpStatus.OK)
-    public EnergyDataListWrapper getAllEnergyData() {
-        List<EnergyData> list = energyDataService.getAllEnergyData();
-        EnergyDataListWrapper wrapper = new EnergyDataListWrapper();
-        wrapper.setEnergyDataList(list);
-        return wrapper;
     }
 
     @GetMapping("/{id}")
@@ -83,6 +61,30 @@ public class EnergyDataController {
     public Void deleteEnergyData(@PathVariable Long id) {
         energyDataService.deleteEnergyData(id);
         return null;
+    }
+    @PostMapping("/processEnergyData")
+    @ResponseStatus(HttpStatus.CREATED)
+    @ResponseBody
+    public Message processEnergyData(@RequestParam(value = "fileName", required = true) String fileName) {
+        if (fileName == null || fileName.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "File name must be provided.");
+        }
+
+        String basePath = FilePathConfig.getInstance().getBasePath();
+        String fullPath = basePath + fileName;
+
+        energyDataService.parseAndSaveEnergyData(fullPath);
+        return new Message("File data processed successfully!");
+    }
+
+    @GetMapping("/data/{year}/{month}")
+    @ResponseBody
+    @ResponseStatus(HttpStatus.OK)
+    public EnergyDataListWrapper getEnergyDataByYearAndMonth(@PathVariable int year, @PathVariable int month) {
+        List<EnergyData> list = energyDataService.getEnergyDataByYearAndMonth(year, month);
+        EnergyDataListWrapper wrapper = new EnergyDataListWrapper();
+        wrapper.setEnergyDataList(list);
+        return wrapper;
     }
 
 }
