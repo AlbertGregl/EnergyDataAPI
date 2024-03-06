@@ -5,7 +5,7 @@
            attributeFormDefault="unqualified"
            elementFormDefault="qualified">
 
-    <xs:complexType name="EnergyDataType">
+    <xs:complexType name="EnergyDataType" ref="tns:energyData">
         <xs:sequence>
             <xs:element type="xs:decimal" name="boa_MWh"/>
             <xs:element type="xs:decimal" name="DA_Price"/>
