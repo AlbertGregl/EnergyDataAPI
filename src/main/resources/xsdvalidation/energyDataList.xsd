@@ -5,7 +5,7 @@
            attributeFormDefault="unqualified"
            elementFormDefault="qualified">
 
-    <xs:complexType name="EnergyDataType" ref="tns:energyData">
+    <xs:complexType name="EnergyDataType">
         <xs:sequence>
             <xs:element type="xs:decimal" name="boa_MWh"/>
             <xs:element type="xs:decimal" name="DA_Price"/>
@@ -23,7 +23,7 @@
     <xs:element name="energyDataList">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="energyData" type="EnergyDataType" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element name="energyData" type="tns:EnergyDataType" minOccurs="0" maxOccurs="unbounded"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
