@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-           targetNamespace="http://gregl.com/energyData"
-           xmlns:tns="http://gregl.com/energyData"
+           targetNamespace="http://gregl/energydataapi/model/EnergyData"
+           xmlns:tns="http://gregl/energydataapi/model/EnergyData"
            attributeFormDefault="unqualified"
            elementFormDefault="qualified">
 
-    <xs:complexType name="EnergyDataType">
+    <xs:complexType name="EnergyData">
         <xs:sequence>
             <xs:element type="xs:decimal" name="boa_MWh"/>
             <xs:element type="xs:decimal" name="DA_Price"/>
@@ -23,7 +23,7 @@
     <xs:element name="energyDataList">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="energyData" type="tns:EnergyDataType" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element name="energyData" type="tns:EnergyData" minOccurs="0" maxOccurs="unbounded"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
