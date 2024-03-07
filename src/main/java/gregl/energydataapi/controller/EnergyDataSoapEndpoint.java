@@ -1,5 +1,7 @@
 package gregl.energydataapi.controller;
 
+import gregl.energydataapi.jaxbutil.JaxbUtil;
+import gregl.energydataapi.jaxbutil.XmlSearchUtil;
 import gregl.energydataapi.model.EnergyData;
 import gregl.energydataapi.model.EnergyDataList;
 import gregl.energydataapi.service.EnergyDataService;
@@ -9,14 +11,14 @@ import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
 import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
-import org.xml.sax.SAXException;
 
-import javax.xml.bind.JAXBException;
-import java.io.IOException;
 import java.util.List;
 
 @Endpoint
 public class EnergyDataSoapEndpoint {
+
+    private static final String SCHEMA_PATH = "xsdvalidation/energyDataList.xsd";
+    private static final String FILE_PATH = "src/main/resources/static/energyDataResponse.xml";
 
     private final EnergyDataService energyDataService;
 
@@ -26,7 +28,7 @@ public class EnergyDataSoapEndpoint {
 
     @PayloadRoot(namespace = "http://gregl/soap/data.wsdl", localPart = "getEnergyDataByYearAndMonthRequest")
     @ResponsePayload
-    public GetEnergyDataByYearAndMonthResponse getEnergyData(@RequestPayload GetEnergyDataByYearAndMonthRequest request) throws JAXBException, IOException, SAXException {
+    public GetEnergyDataByYearAndMonthResponse getEnergyData(@RequestPayload GetEnergyDataByYearAndMonthRequest request) throws Exception {
 
         List<EnergyData> energyDataList = energyDataService.getEnergyDataByYearAndMonth(request.getYear(), request.getMonth());
 
@@ -36,7 +38,18 @@ public class EnergyDataSoapEndpoint {
         wrapper.setEnergyDataList(energyDataList);
 
         response.setEnergyDataList(wrapper);
-        return response;
+
+        // Task 3: marshalling the data to XML file
+        JaxbUtil.marshalToFile(response, FILE_PATH);
+        // searching the data using XPath expression and adjusting the date format
+        XmlSearchUtil.findEnergyDataAndAdjustDate(FILE_PATH);
+
+        // Task 4: validating the XML file against the XSD
+        JaxbUtil.validateFile(FILE_PATH, SCHEMA_PATH);
+
+        // returning the adjusted data
+        return JaxbUtil.unmarshalFromFile(FILE_PATH, GetEnergyDataByYearAndMonthResponse.class);
+
     }
 
 }
