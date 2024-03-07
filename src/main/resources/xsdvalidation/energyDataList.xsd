@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
-           targetNamespace="http://gregl/energydataapi/model/EnergyData"
-           xmlns:tns="http://gregl/energydataapi/model/EnergyData"
+           targetNamespace="http://gregl/energydataapi/model"
+           xmlns:tns="http://gregl/energydataapi/model"
            attributeFormDefault="unqualified"
            elementFormDefault="qualified">
 

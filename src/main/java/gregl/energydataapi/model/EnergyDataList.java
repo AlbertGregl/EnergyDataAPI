@@ -1,4 +1,4 @@
-package gregl.energydataapi.xmlutil;
+package gregl.energydataapi.model;
 
 import gregl.energydataapi.model.EnergyData;
 import jakarta.xml.bind.annotation.XmlAccessType;
@@ -14,7 +14,7 @@ import java.util.List;
 @XmlAccessorType(XmlAccessType.FIELD)
 @Getter
 @Setter
-public class EnergyDataListWrapper {
+public class EnergyDataList {
     @XmlElement(name = "energyData")
     private List<EnergyData> energyDataList;
 }

@@ -4,7 +4,7 @@ import gregl.energydataapi.model.EnergyData;
 import gregl.energydataapi.service.EnergyDataService;
 import gregl.energydataapi.soap.GetEnergyDataByYearAndMonthRequest;
 import gregl.energydataapi.soap.GetEnergyDataByYearAndMonthResponse;
-import gregl.energydataapi.xmlutil.EnergyDataListWrapper;
+import gregl.energydataapi.model.EnergyDataList;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
@@ -31,7 +31,7 @@ public class EnergyDataSoapEndpoint {
         GetEnergyDataByYearAndMonthResponse response = new GetEnergyDataByYearAndMonthResponse();
         List<EnergyData> energyDataList = energyDataService.getEnergyDataByYearAndMonth(request.getYear(), request.getMonth());
 
-        EnergyDataListWrapper energyDataListWrapper = new EnergyDataListWrapper();
+        EnergyDataList energyDataListWrapper = new EnergyDataList();
         energyDataListWrapper.setEnergyDataList(energyDataList);
 
         response.setEnergyDataList(energyDataListWrapper);

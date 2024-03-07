@@ -1,6 +1,6 @@
 package gregl.energydataapi.soap;
 
-import gregl.energydataapi.xmlutil.EnergyDataListWrapper;
+import gregl.energydataapi.model.EnergyDataList;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlElement;
@@ -17,5 +17,5 @@ import lombok.Setter;
         })
 public class GetEnergyDataByYearAndMonthResponse {
     @XmlElement(required = true)
-    protected EnergyDataListWrapper energyDataList;
+    protected EnergyDataList energyDataList;
 }

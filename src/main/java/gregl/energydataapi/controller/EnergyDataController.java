@@ -4,7 +4,7 @@ import gregl.energydataapi.fileutil.FilePathConfig;
 import gregl.energydataapi.model.EnergyData;
 import gregl.energydataapi.model.Message;
 import gregl.energydataapi.service.EnergyDataService;
-import gregl.energydataapi.xmlutil.EnergyDataListWrapper;
+import gregl.energydataapi.model.EnergyDataList;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -80,9 +80,9 @@ public class EnergyDataController {
     @GetMapping("/data/{year}/{month}")
     @ResponseBody
     @ResponseStatus(HttpStatus.OK)
-    public EnergyDataListWrapper getEnergyDataByYearAndMonth(@PathVariable int year, @PathVariable int month) {
+    public EnergyDataList getEnergyDataByYearAndMonth(@PathVariable int year, @PathVariable int month) {
         List<EnergyData> list = energyDataService.getEnergyDataByYearAndMonth(year, month);
-        EnergyDataListWrapper wrapper = new EnergyDataListWrapper();
+        EnergyDataList wrapper = new EnergyDataList();
         wrapper.setEnergyDataList(list);
         return wrapper;
     }
