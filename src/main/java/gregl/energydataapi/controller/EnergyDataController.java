@@ -2,9 +2,9 @@ package gregl.energydataapi.controller;
 
 import gregl.energydataapi.fileutil.FilePathConfig;
 import gregl.energydataapi.model.EnergyData;
+import gregl.energydataapi.model.EnergyDataList;
 import gregl.energydataapi.model.Message;
 import gregl.energydataapi.service.EnergyDataService;
-import gregl.energydataapi.model.EnergyDataList;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
