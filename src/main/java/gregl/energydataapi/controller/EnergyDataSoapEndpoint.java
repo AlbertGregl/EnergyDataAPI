@@ -5,6 +5,7 @@ import gregl.energydataapi.service.EnergyDataService;
 import gregl.energydataapi.soap.GetEnergyDataByYearAndMonthRequest;
 import gregl.energydataapi.soap.GetEnergyDataByYearAndMonthResponse;
 import gregl.energydataapi.model.EnergyDataList;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
@@ -13,19 +14,13 @@ import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
 import java.util.List;
 
-@Endpoint
+//@Endpoint
+//@AllArgsConstructor
 public class EnergyDataSoapEndpoint {
 
-    @Value("${wsdl.targetNamespace}")
-    private String NAMESPACE_URI;
+/*    private final EnergyDataService energyDataService;
 
-    private final EnergyDataService energyDataService;
-
-    public EnergyDataSoapEndpoint(EnergyDataService energyDataService) {
-        this.energyDataService = energyDataService;
-    }
-
-    @PayloadRoot(namespace = "NAMESPACE_URI", localPart = "getEnergyDataByYearAndMonthRequest")
+    @PayloadRoot(namespace = "http://gregl/soap/data.wsdl", localPart = "getEnergyDataByYearAndMonthRequest")
     @ResponsePayload
     public GetEnergyDataByYearAndMonthResponse getEnergyData(@RequestPayload GetEnergyDataByYearAndMonthRequest request) {
         GetEnergyDataByYearAndMonthResponse response = new GetEnergyDataByYearAndMonthResponse();
@@ -36,6 +31,6 @@ public class EnergyDataSoapEndpoint {
 
         response.setEnergyDataList(energyDataListWrapper);
         return response;
-    }
+    }*/
 
 }

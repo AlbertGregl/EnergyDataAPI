@@ -42,7 +42,7 @@
             <groupId>org.glassfish.jaxb</groupId>
             <artifactId>jaxb-runtime</artifactId>
         </dependency>
-        <!-- XML -->
+        <!-- XML & WSDL -->
         <dependency>
             <groupId>wsdl4j</groupId>
             <artifactId>wsdl4j</artifactId>
@@ -118,9 +118,10 @@
 <!--            <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>jaxb2-maven-plugin</artifactId>
-                <version>2.5.0</version>
+                <version>3.1.0</version>
                 <executions>
                     <execution>
+                        <id>xjc</id>
                         <goals>
                             <goal>xjc</goal>
                         </goals>
@@ -128,10 +129,8 @@
                 </executions>
                 <configuration>
                     <sources>
-                        <source>src/main/resources/xsdvalidation</source>
+                        <source>${project.basedir}/src/main/resources/xsdvalidation/energyDataList.xsd</source>
                     </sources>
-                    <outputDirectory>src/main/java</outputDirectory>
-                    <clearOutputDir>false</clearOutputDir>
                 </configuration>
             </plugin>-->
 

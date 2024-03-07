@@ -28,7 +28,7 @@ public class WebServiceConfig extends WsConfigurerAdapter {
         return new ServletRegistrationBean<>(servlet, "/soap/*");
     }
 
-    @Bean(name = "energyData")
+    @Bean(name = "data")
     public DefaultWsdl11Definition defaultWsdl11Definition(XsdSchema energyDataSchema) {
         DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
         wsdl11Definition.setPortTypeName("EnergyDataPort");

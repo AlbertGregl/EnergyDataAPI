@@ -7,17 +7,17 @@ import jakarta.xml.bind.annotation.XmlType;
 import lombok.Getter;
 import lombok.Setter;
 
-@XmlAccessorType(XmlAccessType.FIELD)
+/*@XmlAccessorType(XmlAccessType.FIELD)
 @Getter
 @Setter
 @XmlType(name = "GetEnergyDataByYearAndMonthRequest",
         propOrder = {
                 "year",
-                "month"})
+                "month"})*/
 public class GetEnergyDataByYearAndMonthRequest {
-    @XmlElement(required = true)
+/*    @XmlElement(required = true)
     protected int year;
 
     @XmlElement(required = true)
-    protected int month;
+    protected int month;*/
 }

@@ -15,6 +15,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
         "gregl.energydataapi.controller",
         "gregl.energydataapi.service",
         "gregl.energydataapi.config"
+        //"gregl.energydataapi.soap"
 })
 public class EnergyDataApiApplication {
 
