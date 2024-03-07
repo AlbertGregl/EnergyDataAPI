@@ -115,7 +115,7 @@
                     </excludes>
                 </configuration>
             </plugin>
-            <plugin>
+<!--            <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>jaxb2-maven-plugin</artifactId>
                 <version>2.5.0</version>
@@ -133,7 +133,7 @@
                     <outputDirectory>src/main/java</outputDirectory>
                     <clearOutputDir>false</clearOutputDir>
                 </configuration>
-            </plugin>
+            </plugin>-->
 
         </plugins>
     </build>
