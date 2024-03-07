@@ -7,15 +7,18 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
-@EntityScan("gregl.energydataapi.model")
+@EntityScan(basePackages = {
+        "gregl.energydataapi.model",
+        "gregl.energydataapi.soap"
+})
 @EnableJpaRepositories("gregl.energydataapi.repository")
 @ComponentScan(basePackages = {
         "gregl.energydataapi.model",
         "gregl.energydataapi.repository",
         "gregl.energydataapi.controller",
         "gregl.energydataapi.service",
-        "gregl.energydataapi.config"
-        //"gregl.energydataapi.soap"
+        "gregl.energydataapi.config",
+        "gregl.energydataapi.soap"
 })
 public class EnergyDataApiApplication {
 

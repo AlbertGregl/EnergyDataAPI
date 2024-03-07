@@ -20,7 +20,11 @@
         </xs:sequence>
     </xs:complexType>
 
-    <xs:element name="energyData" type="tns:EnergyData"/>
+    <xs:complexType name="EnergyDataList">
+        <xs:sequence>
+            <xs:element name="energyData" type="tns:EnergyData" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
 
     <xs:element name="getEnergyDataByYearAndMonthRequest">
         <xs:complexType>
@@ -34,7 +38,7 @@
     <xs:element name="getEnergyDataByYearAndMonthResponse">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="energyDataList" type="tns:EnergyData" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element name="energyDataList" type="tns:EnergyDataList"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
