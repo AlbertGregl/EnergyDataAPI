@@ -16,7 +16,7 @@ import java.util.List;
 @Endpoint
 public class EnergyDataSoapEndpoint {
 
-    @Value("${okta.oauth2.issuer}")
+    @Value("${wsdl.targetNamespace}")
     private String NAMESPACE_URI;
 
     private final EnergyDataService energyDataService;

@@ -17,7 +17,7 @@ import org.springframework.xml.xsd.XsdSchema;
 @Configuration
 public class WebServiceConfig extends WsConfigurerAdapter {
 
-    @Value("${okta.oauth2.issuer}")
+    @Value("${wsdl.targetNamespace}")
     private String NAMESPACE_URI;
 
     @Bean
