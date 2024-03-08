@@ -22,7 +22,7 @@ public class SecurityConfig {
                         .requestMatchers("/api/delete/**").authenticated()
                         .requestMatchers("/api/uploadEnergyData").authenticated()
                         .requestMatchers("/api/data/**/**").authenticated()
-                        .requestMatchers("/soap/").permitAll()
+                        .requestMatchers("/soap/*").authenticated()
                         .requestMatchers("/soap/data.wsdl").permitAll()
                         )
                 .oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt);
