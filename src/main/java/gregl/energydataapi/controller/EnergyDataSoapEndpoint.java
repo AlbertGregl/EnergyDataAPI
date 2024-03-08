@@ -39,12 +39,12 @@ public class EnergyDataSoapEndpoint {
 
         response.setEnergyDataList(wrapper);
 
-        // Task 3: marshalling the data to XML file
+        // Task 3: SOAP marshalling the data to XML file
         JaxbUtil.marshalToFile(response, FILE_PATH);
         // searching the data using XPath expression and adjusting the date format
         XmlSearchUtil.findEnergyDataAndAdjustDate(FILE_PATH);
 
-        // Task 4: validating the XML file against the XSD
+        // Task 4: validating the XML file against the XSD schema using JAXB
         JaxbUtil.validateFile(FILE_PATH, SCHEMA_PATH);
 
         // returning the adjusted data

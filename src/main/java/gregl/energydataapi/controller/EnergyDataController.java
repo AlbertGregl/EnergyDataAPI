@@ -12,12 +12,14 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
+
 @RestController
 @RequestMapping(path = "api", produces = MediaType.APPLICATION_XML_VALUE)
 @CrossOrigin(origins = "*")
 public class EnergyDataController {
     private final EnergyDataService energyDataService;
 
+    // Task 6: Implementing a custom API for the EnergyData entity
     public EnergyDataController(EnergyDataService energyDataService) {
         this.energyDataService = energyDataService;
     }
